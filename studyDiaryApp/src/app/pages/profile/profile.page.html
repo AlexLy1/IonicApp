@@ -1,0 +1,114 @@
+<!-- This file constructs the view of the profile page. -->
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Profile</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="logOut()">
+      <ion-icon slot="icon-only" name="log-out"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card text = center>
+    <ion-row>
+      <ion-col size="2">
+        <ion-avatar item="start">
+          <img src="./assets/icon/favicon.png">
+        </ion-avatar>
+      </ion-col>
+      <ion-col>
+        <ion-list>
+          <ion-item (click)="updateName()">
+            <ion-label>
+              <!-- Construct a grid look for the profile -->
+              <!-- left part takes labels, right part takes values -->
+              <ion-grid>
+                <ion-row>
+                  <ion-col class="text-left" size="5"> Name </ion-col>
+                  <ion-col
+                          class="text-center"
+                          size="7"
+                          *ngIf="userProfile?.firstName && userProfile?.lastName"
+                  >
+                    <!-- ? mark is Elvis operator, make sure the object is there -->
+                    <!-- before accessing any of its properties -->
+                    {{userProfile?.firstName}} {{userProfile?.lastName}}
+                  </ion-col>
+                  <ion-col
+                          size="7"
+                          class="placeholder-profile text-center"
+                          *ngIf="!userProfile?.firstName"
+                  >
+                    <span> Tap to edit. </span>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-label>
+          </ion-item>
+
+          <!-- birthday item -->
+          <ion-item>
+            <ion-label class="dob-label"> Date of Birth </ion-label>
+            <!-- by calling (ionChange) method, allows us to handle everything on the same page -->
+            <ion-datetime
+                    displayFormat="MMM D, YYYY"
+                    pickerFormat="D MM YYYY"
+                    [(ngModel)]="birthDate"
+                    (ionChange)="updateDOB(birthDate)"
+            >
+            </ion-datetime>
+          </ion-item>
+
+          <!-- function to update the user's email and password -->
+          <ion-item (click)="updateEmail()">
+            <ion-label>
+              <ion-grid>
+                <ion-row>
+                  <ion-col class="text-left" size="5"> Email </ion-col>
+                  <ion-col class="text-center" size="7" *ngIf="userProfile?.email">
+                    {{userProfile?.email}}
+                  </ion-col>
+                  <ion-col
+                          size="7"
+                          class="placeholder-profile text-center"
+                          *ngIf="!userProfile?.email"
+                  >
+                    <span> Tap to edit. </span>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-label>
+          </ion-item>
+
+          <ion-item (click)="updatePassword()">
+            <ion-label>
+              <ion-grid>
+                <ion-row>
+                  <ion-col class="text-left" size="5"> Password</ion-col>
+                  <ion-col class="text-center" size="7" class="placeholder-profile" *ngIf="userProfile?.password">
+                    {{userProfile?.password}}
+                  </ion-col>
+                  <ion-col
+                          size="7"
+                          class="placeholder-profile text-center"
+                          *ngIf="!userProfile?.password"
+                  >
+                    <span> Tap to edit. </span>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+  <p *ngIf="this.emailMessage != null" text-center="center">{{this.emailMessage}}</p>
+  <p *ngIf="this.passwordMessage != null" text-center="center">{{this.passwordMessage}}</p>
+</ion-content>

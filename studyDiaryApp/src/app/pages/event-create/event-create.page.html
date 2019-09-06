@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>New Study Note</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-item>
+    <ion-label position="stacked" class="my-label">Study Category</ion-label>
+    <ion-input
+      [(ngModel)]="studyCat"
+      type="text"
+      placeholder="What method do you use to study?"
+    >
+    </ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked" class="my-label">Subject</ion-label>
+    <ion-input
+      [(ngModel)]="studySubject"
+      type="text"
+      placeholder="What subject do you study?"
+    >
+    </ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked" class="my-label">Time Spent</ion-label>
+    <ion-input
+      [(ngModel)]="studyTime"
+      type="number"
+      placeholder="How long do you spend on it?"
+      >
+    </ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Study Date</ion-label>
+    <ion-datetime
+      [(ngModel)]="studyDate"
+      displayFormat="D MMM, YY"
+      pickerFormat="DD MMM YYYY"
+      min="2017"
+      max="2020-12-31"
+      >
+    </ion-datetime>
+  </ion-item>
+
+  <ion-button
+    expand="block"
+    (click)="createEvent(studyCat, studySubject, studyTime, studyDate)"
+  >
+    Create Note
+  </ion-button>
+</ion-content>

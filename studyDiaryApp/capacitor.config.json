@@ -1,0 +1,7 @@
+{
+  "appId": "com.swen325.practiceApp",
+  "appName": "practice",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www"
+}

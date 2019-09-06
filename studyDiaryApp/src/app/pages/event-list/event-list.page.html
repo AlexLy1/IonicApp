@@ -1,0 +1,26 @@
+<ion-header>
+
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Study Notes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item
+      tappable
+      *ngFor="let event of eventList"
+      routerLink="/event-detail/{{ event.id}}}"
+    >
+      <ion-label>
+        <h2 class="category">{{event?.category}}</h2>
+        <p>Subject: <strong>{{event?.subject}}</strong></p>
+        <p>Duration: <strong>{{event?.duration}}hrs</strong></p>
+        <p>Date: <strong>{{event?.date}}</strong></p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
